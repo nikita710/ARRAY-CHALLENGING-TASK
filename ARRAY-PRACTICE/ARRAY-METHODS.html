@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //ARRAY
+      let car = ["BMW", "VOLVO", "HONDA"];
+      console.log(
+        `Array length: ${car.length} last index: ${
+          car.length - 1
+        }, array value: ${[car]}, array last value: ${car[car.length - 1]} \n`
+      );
+
+      console.log("Array data from forEach loop \n");
+      car.forEach((item, index, array) => {
+        console.log(item, index, array);
+      });
+
+      console.log("Array data type toString:", car.toString());
+
+      console.log("Array pop() method:", car.pop(), car);
+
+      console.log("Array push(AUDI) method:", car.push("AUDI"), car);
+
+      console.log("Array shift() method:", car.shift(), car);
+
+      console.log("Array unshift(MAZDA) method: ", car.unshift("MAZDA"), car);
+
+      let bikes = ["Royal Enfield", "Yamaha", "Suzuki"];
+      let vehicles = car.concat(bikes);
+     
+      console.log("Array concat(bikes) method:", vehicles);
+
+      console.log("Array sort() method:", vehicles.sort());
+     
+      console.log("Array reverse() method:", vehicles.reverse());
+
+      let num1 = [1, 2, 3, 4, 5, 6];
+      console.log(
+        "Array map() method:",
+        num1,
+        num1.map((data) => data * 2)
+      );
+      console.log(
+        "Array filter(item < 4) method:",
+        num1.filter((item) => item < 4)
+      );
+      console.log(
+        "Array reduce() method:",
+        num1.reduce((item, val) => item * val)
+      );
+      //console.log(car);
+    </script>
+  </body>
+</html>

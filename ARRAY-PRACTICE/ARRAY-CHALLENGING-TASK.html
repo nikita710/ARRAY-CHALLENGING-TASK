@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // return new array
+      const fill = (arraySize, value) => {
+        if (arraySize) {
+          return new Array(arraySize).fill(value);
+        }
+      };
+      document.write(fill(5, "n"));
+      console.log(fill(5, "K"));
+
+      //Reverse element
+      const reverse = (array) => {
+        //console.log(array);
+        const reversed = [];
+        for (let i = 0; i < array; i++) {
+          reversed.push(i);
+        }
+        for (let j = array.length - 1; j >= 0; j -= 1) {
+          reversed.push(array[j]);
+        }
+        return reversed;
+      };
+      const reverse2 = (array) =>
+        array.map((el, id, arr) => arr[arr.length - id - 1]);
+      console.log(reverse(5));
+      console.log(reverse([1, 2, 3, 4, 5]));
+      console.log(reverse2([1, 2, 3, 4, 5]));
+
+      //Compact element
+      const compact = (array) => {
+        return array.filter((data) => data);
+      };
+      console.log(compact([0, 1, false, 2, undefined, "", 3, null]));
+
+      //Return Array in object form
+      const fromPairs = (array) =>
+        array.reduce((item, value) => {
+          item[value[0]] = value[1];
+          return item;
+        }, {});
+
+      console.log(
+        fromPairs([
+          ["a", 1],
+          ["b", 2],
+          ["c", 3],
+          ["d", 4],
+        ])
+      );
+
+      //Return Array without listed
+      // const widhout = (array, ...arg) => {
+      //   let filterData = [...array];
+      //   for (let i = 0; i < arg.length; i++) {
+      //     filterData = filterData.filter((items) => items !== arg[i]);
+      //   }
+      //   return filterData;
+      // };
+      function widhout(array) {
+        let filterData = [...array];
+        console.log(arguments);
+        for (let i = 1; i < arguments.length; i++) {
+          filterData = filterData.filter((items) => items !== arguments[i]);
+        }
+        return filterData;
+      }
+      console.log(widhout([1, 2, 3, 8, 4, 6, 1, 2, 3], 1, 2));
+
+      //Return Uniq Array
+      const uniqe = (array) => Array.from(new Set(array));
+      // const uniqe = (array) =>
+      //   array.filter((items, index) => array.indexOf(items) === index);
+      console.log(uniqe([1, 2, 3, 8, 4, 6, 1, 2, 3]));
+
+      //Return Same Array
+      const isEqual = (firstArray, secondArray) => {
+        if (firstArray.length !== secondArray.length) {
+          return false;
+        }
+        const compared = firstArray.map(
+          (items, id) => secondArray[id] === items
+        );
+        return !compared.includes(false);
+      };
+
+      const arr1 = [1, 2, 3, 4];
+      const arr2 = [1, 2, 3, 4];
+      const arr3 = [1, 2, 3, 5];
+      const arr4 = [1, 2, 3, 4, 5];
+
+      console.log(isEqual(arr1, arr2)); // true
+      console.log(isEqual(arr1, arr3)); // false
+      console.log(isEqual(arr1, arr4)); // false
+
+      //Return Flat Array
+      const flatten = (array) =>
+        array.reduce(
+          (preVal, curVal) =>
+            preVal.concat(Array.isArray(curVal) ? flatten(curVal) : curVal),
+          []
+        );
+
+      console.log(flatten([1, 2, [3, 4, [5]]])); // [1, 2, 3, 4, 5]
+
+      //Return chunk Array
+      const chunk = (array, size) => {
+        const chunkedArr = [];
+        let index = 0;
+        while (index < array.length) {
+          chunkedArr.push(array.slice(index, size + index));
+          index += size;
+        }
+        return chunkedArr;
+      };
+      // const chunk = (array, size) => {
+      //   const chunkedArr = [];
+      //   let index = 0;
+      //   while (index < array.length) {
+      //     chunkedArr.push(array.slice(index, size + index));
+      //     index += size;
+      //   }
+      //   return chunkedArr;
+      // };
+
+      const data = [1, 2, 3, 4, 5, 6, 7];
+      console.log(chunk(data, 2)); // [[1, 2], [3, 4], [5, 6], [7]]
+      console.log(chunk(data, 3)); // [[1, 2, 3], [4, 5, 6], [7]]
+
+      //Write a method that creates an array of unique values that are included in all given arrays
+      const intersection = (...arrays) => {
+        console.log("======================================");
+        const result = arrays[0].filter((element) => {
+          // console.log(arrays[1].indexOf(element));
+          const indexOfEelement = arrays[1].indexOf(element);
+          console.log(indexOfEelement);
+          if (indexOfEelement >= 0) {
+            return element;
+          }
+        });
+        if (arrays.length > 2) {
+          intersection(result, arrays.slice(2, arrays.length));
+          //console.log(result, arrays.slice(2, arrays.length))
+        }
+        // return((result));
+        return Array.from(new Set(result));
+      };
+
+      const data1 = [1, 2, 3];
+      const data2 = [2, 3, 4];
+      const data3 = ["a", "b"];
+      const data4 = ["b", "c"];
+      const data5 = ["b", "e", "c"];
+      const data6 = ["b", "b", "e"];
+      const data7 = ["b", "c", "e"];
+      const data8 = ["b", "e", "c"];
+      console.log(intersection(data1, data2)); // [2]
+      console.log(intersection(data3, data4, data5)); // ['b']
+      console.log(intersection(data6, data7, data8)); // ['b', 'e']
+    </script>
+  </body>
+</html>
